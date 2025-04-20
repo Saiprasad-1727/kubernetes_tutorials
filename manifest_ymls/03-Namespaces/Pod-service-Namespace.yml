@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace 
+metadata:
+  name: Sai-Namespace
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: Sai-Pod
+  namespace: Sai-Namespace 
+  labels:
+    app: my-app
+spec:
+  containers:
+    - name: my-container
+      image: nginx
+      ports:
+      - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: Sai-Service
+  namespace: Sai-Namespace
+  labels:
+    app: my-app
+spec:
+  type: ClusterIP/NodePort/LoadBalancer
+  # Choose one of the above types based on your requirement
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080 # Change this to the port your container is listening on
+      # If you are using NodePort or LoadBalancer, you can specify a nodePort here as well
+      # nodePort: 30007 # Uncomment this line if you want to specify a NodePort 
+      # Note: NodePort is only applicable if you set the type to NodePort or LoadBalancer
+      # The port number must be in the range 30000-32767 for NodePort service 
+      # and should not be in use by any other service
+# Note: The above YAML file creates a namespace, a pod, and a service in that namespace.
+# The pod runs an nginx container, and the service exposes the pod on port 80.
+...
+# To apply this configuration, save it to a file (e.g., pod-service-namespace.yml) and run:   
+  
+  

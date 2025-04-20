@@ -1,0 +1,16 @@
+---
+apiVersion: v1 #
+kind: Service #
+metadata: #
+  name: my-service # Name of the service
+spec: # Service name
+  type: ClusterIP/NodePort/LoadBalancer # Choose one based on your needs
+  # type: LoadBalancer for external access, NodePort for internal, ClusterIP for internal only  
+  selector: #{app: my-app} # This should match the labels of your pods
+    app: my-app
+  ports:  #- name: tcp
+    - protocol: TCP # protocol type, can be TCP or UDP
+      port: 80 # port exposed by the service
+      targetPort: 8080 # port on the pod to forward traffic to
+...
+# This YAML file defines a service in Kubernetes.  

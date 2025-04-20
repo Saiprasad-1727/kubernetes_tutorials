@@ -1,0 +1,12 @@
+apiVersion: v1 # species the API version of the Kubernetes object
+kind: pod  # specifies the kind of object, in this case, a Pod
+metadata: # metadata contains information about the object        3
+  name: my-pod # name of the Pod3
+spec:   # specification of the Pod
+  containers: # list of containers in the Pod
+    - name: my-container # name of the container
+      image: nginx:latest # image to use for the container
+      ports: # list of ports to expose from the container
+        - containerPort: 80 # port number to expose from the container
+...
+
