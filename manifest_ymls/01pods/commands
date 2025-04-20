@@ -1,0 +1,11 @@
+To create the Pod shown above, run the following command:
+
+kubectl apply -f pod.yml
+
+kubectl get pods # to check the pods available
+
+kubectl get pods -o wide # to check the pods running on which worker node
+
+kubectl describe pod <pod-name> # describe the pod
+
+kubectl logs <pod-name>  # check the logs of the pods
